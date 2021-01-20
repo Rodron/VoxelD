@@ -9,12 +9,12 @@ public class FollowGyro : MonoBehaviour
 
     void Start()
     {
-        GyroManager.Instance.EnableGyro();
+        //GyroManager.Instance.EnableGyro();
     }
 
     
     void Update()
     {
-        transform.localRotation = GyroManager.Instance.GetGyroRotation() * baseRotation;
+        //transform.localRotation = GyroManager.Instance.GetGyroRotation() * baseRotation;
     }
 }

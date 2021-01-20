@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - countdown
+  - col01
+  - col02
+  - goal
   layers:
   - Default
   - TransparentFX

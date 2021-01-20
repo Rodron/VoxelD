@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 
 
@@ -234,6 +235,13 @@ public class ArcadeCar : MonoBehaviour
     Ray wheelRay = new Ray();
     RaycastHit[] wheelRayHits = new RaycastHit[16];
 
+    //VOXEL D
+    Gyroscope gyro;
+    public  GameObject buttons;
+    CarInputUI buttonsInput;
+
+    public  GameObject debugText00;
+    public Text debugText01;
 
     void Reset(Vector3 position)
     {
@@ -256,7 +264,11 @@ public class ArcadeCar : MonoBehaviour
 
     void Start()
     {
+        buttonsInput = buttons.GetComponent<CarInputUI>();
+        gyro = Input.gyro;
+        gyro.enabled = true;
 
+        debugText01 = debugText00.GetComponent<Text>();
 
         style.normal.textColor = Color.red;
 
@@ -428,8 +440,30 @@ public class ArcadeCar : MonoBehaviour
 
     void UpdateInput()
     {
-        float v = Input.GetAxis("Vertical");
-        float h = Input.GetAxis("Horizontal");
+        //float h = Input.GetAxis("Horizontal");
+        //float v = Input.GetAxis("Vertical");
+        
+        ///*VOXELD
+        float v = 0;
+        float h = 0;
+        if (SystemInfo.supportsGyroscope)
+        {
+            //debugText01.text = "z: " + -gyro.attitude.eulerAngles.z + " x: " + gyro.attitude.eulerAngles.x + " y: " + gyro.attitude.eulerAngles.y;
+            
+            h = -gyro.attitude.eulerAngles.z/180 - 1;
+        }
+        else
+        {   
+            v = Input.GetAxis("Vertical");              
+            h = Input.GetAxis("Horizontal");
+        }
+
+        v = buttonsInput.Steering();               
+        
+        //*/
+
+        
+        
         //Debug.Log (string.Format ("H = {0}", h));
 
         if (!controllable)

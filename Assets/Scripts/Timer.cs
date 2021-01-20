@@ -6,8 +6,7 @@ public class Timer : MonoBehaviour
 {
     [SerializeField]GameObject car;  
     Text timerText;
-    float time = 0f;
-    bool endCountdown = true;
+    public float time = 0f;    
     
     string FormatTime (float time)
     {

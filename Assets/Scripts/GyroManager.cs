@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GyroManager : MonoBehaviour
 {    
+    /*
     #region Instance
     private static GyroManager instance;
     public static GyroManager Instance{
@@ -25,7 +26,7 @@ public class GyroManager : MonoBehaviour
         }
     }
     #endregion
-    
+    */
     [Header ("Logic")]
     private Gyroscope gyro;
     private Quaternion rotation;
