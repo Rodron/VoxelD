@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 
 
 
@@ -240,8 +239,7 @@ public class ArcadeCar : MonoBehaviour
     public  GameObject buttons;
     CarInputUI buttonsInput;
 
-    public  GameObject debugText00;
-    public Text debugText01;
+    public  GameObject debugText;
 
     void Reset(Vector3 position)
     {
@@ -267,8 +265,6 @@ public class ArcadeCar : MonoBehaviour
         buttonsInput = buttons.GetComponent<CarInputUI>();
         gyro = Input.gyro;
         gyro.enabled = true;
-
-        debugText01 = debugText00.GetComponent<Text>();
 
         style.normal.textColor = Color.red;
 
@@ -448,8 +444,7 @@ public class ArcadeCar : MonoBehaviour
         float h = 0;
         if (SystemInfo.supportsGyroscope)
         {
-            //debugText01.text = "z: " + -gyro.attitude.eulerAngles.z + " x: " + gyro.attitude.eulerAngles.x + " y: " + gyro.attitude.eulerAngles.y;
-            
+            v = buttonsInput.Steering();               
             h = -gyro.attitude.eulerAngles.z/180 - 1;
         }
         else
@@ -458,7 +453,6 @@ public class ArcadeCar : MonoBehaviour
             h = Input.GetAxis("Horizontal");
         }
 
-        v = buttonsInput.Steering();               
         
         //*/
 
