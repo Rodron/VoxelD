@@ -188,7 +188,7 @@ public class ArcadeCar : MonoBehaviour
 
     [Header("Debug")]
 
-    public bool debugDraw = true;
+    public bool debugDraw = false;
 
     [Header("Other")]
 
