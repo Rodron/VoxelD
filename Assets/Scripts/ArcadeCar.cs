@@ -444,8 +444,10 @@ public class ArcadeCar : MonoBehaviour
         float h = 0;
         if (SystemInfo.supportsGyroscope)
         {
-            v = buttonsInput.Steering();               
-            h = -gyro.attitude.eulerAngles.z/180 - 1;
+            v = buttonsInput.Steering();
+            float a = -gyro.attitude.eulerAngles.z;            
+            h = (a - 180f * Mathf.Floor((a + 180f) / 180f))/180;
+            //h = -gyro.attitude.eulerAngles.z/180 - 1;            
         }
         else
         {   

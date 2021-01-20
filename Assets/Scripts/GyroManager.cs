@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GyroManager : MonoBehaviour
 {    
@@ -31,6 +32,8 @@ public class GyroManager : MonoBehaviour
     private Gyroscope gyro;
     private Quaternion rotation;
     private bool gyroActive;
+    public GameObject debugText;
+    Text daDebugText;
 
     public void EnableGyro()
     {
@@ -51,12 +54,15 @@ public class GyroManager : MonoBehaviour
         return rotation;
     }
 
+    private void Start()
+    {
+        daDebugText = debugText.GetComponent<Text>();
+    }
     private void Update()
     {
-        if(gyroActive)
-        {
+        if(SystemInfo.supportsGyroscope){
             rotation = gyro.attitude;
-            Debug.Log("Rotation: " + rotation);
+            daDebugText.text = "Rotation: " + rotation;
         }
     }
 }
