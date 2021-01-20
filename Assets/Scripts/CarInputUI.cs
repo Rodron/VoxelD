@@ -23,8 +23,7 @@ public class CarInputUI : MonoBehaviour {
     }
 
     void Update() {
-        Debug.Log("l " + leftButton.GetComponent<ButtonPress>().pressed);
-        Debug.Log("r " + rightButton.GetComponent<ButtonPress>().pressed);
+        
         // If left and right buttons cancel each other out, don't do anything:
         if (lb.pressed == rb.pressed) return;
  
@@ -33,6 +32,6 @@ public class CarInputUI : MonoBehaviour {
         if (lb.pressed) target = -1;
         else if (rb.pressed) target = 1;
         steeringValue = Mathf.SmoothDamp(steeringValue, target, ref steeringVelocity, 1);
-        Debug.Log(steeringValue);
+        
     }    
 }

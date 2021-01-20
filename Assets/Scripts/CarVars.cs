@@ -18,6 +18,6 @@ public class CarVars : MonoBehaviour
         score = 0;
         lap = 0;
         marker = 0;
-        totalLaps = 3;
+        totalLaps = PlayerPrefs.GetInt("laps",3);
     }
 }

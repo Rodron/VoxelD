@@ -264,6 +264,7 @@ public class ArcadeCar : MonoBehaviour
     {
         buttonsInput = buttons.GetComponent<CarInputUI>();
         gyro = Input.gyro;
+        Input.gyro.enabled = true;
         gyro.enabled = true;
 
         style.normal.textColor = Color.red;
@@ -442,12 +443,16 @@ public class ArcadeCar : MonoBehaviour
         ///*VOXELD
         float v = 0;
         float h = 0;
+        
         if (SystemInfo.supportsGyroscope)
         {
             v = buttonsInput.Steering();
-            float a = -gyro.attitude.eulerAngles.z;            
-            h = (a - 180f * Mathf.Floor((a + 180f) / 180f))/180;
+            Debug.Log(gyro.attitude);
+            //float a = -gyro.attitude.eulerAngles.z;            
+            //h = (a - 180f * Mathf.Floor((a + 180f) / 180f))/180;
             //h = -gyro.attitude.eulerAngles.z/180 - 1;            
+            h = -gyro.attitude.z;
+            //Debug.Log("h " + h);
         }
         else
         {   
@@ -456,9 +461,10 @@ public class ArcadeCar : MonoBehaviour
         }
 
         
-        //*/
-
-        
+        /*
+        v = Input.GetAxis("Vertical");              
+        h = Input.GetAxis("Horizontal");
+        */
         
         //Debug.Log (string.Format ("H = {0}", h));
 

@@ -11,7 +11,7 @@ public class goToMnu : MonoBehaviour
     [SerializeField] GameObject text;
     void Start()
     {
-        text.GetComponent<Text>().text = "Tu puntuación fue de : "+ PlayerPrefs.GetInt("puntuacion")+" puntos";
+        text.GetComponent<Text>().text = "Tu puntuación fue de : "+ PlayerPrefs.GetInt("score")+" puntos";
     }
 
     // Update is called once per frame

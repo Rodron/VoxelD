@@ -1,9 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LapCount : MonoBehaviour
-{    
+{
+    public GameObject lapText;
+    public GameObject pj;
+    float time = 0f;    
+
+    void Update(){
+        if(time < 0){
+            return;
+        }
+        time += Time.deltaTime;
+        if(time>.5f){
+            lapText.GetComponent<Text>().text = (pj.GetComponent<CarVars>().lap+1) + "/" + pj.GetComponent<CarVars>().totalLaps;
+            time = -2f;
+        }
+    }
     void OnTriggerEnter(Collider obj){
         if (obj.gameObject.tag == "Player"){
 
@@ -15,15 +31,18 @@ public class LapCount : MonoBehaviour
                     {
                         player.marker = 0;
                         player.lap++;
-                        
+                        lapText.GetComponent<Text>().text = player.lap + "/" + player.totalLaps;
+
                         if(player.lap == player.totalLaps)
                         {
                             //CALCULAR PUNTUACIÓN DEL TIEMPO
                             if(player.getTime() < 90*player.totalLaps)
                             {
-                                player.score += 90*player.totalLaps - (int)player.getTime();
+                                player.score += 110*player.totalLaps - (int)player.getTime();
                             }
                             //IR A ESCENA PUNTUACIÓN
+                            PlayerPrefs.SetInt("score", player.score);
+                            SceneManager.LoadScene("puntuaciones");
                         }
 
                         Debug.Log("Vuelta " + player.lap);
