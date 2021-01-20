@@ -61,7 +61,8 @@ public class Timer : MonoBehaviour
         }
         
         if (gameObject.tag == "countdown" && time > -1){
-            car.GetComponent<CarController>().strengthCoefficient = 4000f;
+            car.GetComponent<ArcadeCar>().axles[0].isPowered = true;
+            car.GetComponent<ArcadeCar>().axles[1].isPowered = true;
             gameObject.SetActive(false);
         }
     }
